@@ -2,8 +2,8 @@
 
 #include <QTimer>
 
-WaitPage::WaitPage(QWidget *parent, myPage *parent_page_)
-	: myPage(parent, parent_page_),
+WaitPage::WaitPage(const QString &name, QWidget *parent)
+	: myPage(name, parent),
 	  time_(0),
 	  timer_(this),
 	  button_("0", this) {
@@ -20,11 +20,11 @@ WaitPage::WaitPage(QWidget *parent, myPage *parent_page_)
 	this->setLayout(&main_layout_);
 
 	connect(&button_, &QPushButton::clicked, this, [this]() {
-		this->toParent();
+		this->finish();
 	});
 }
 
-void WaitPage::entry() {
+void WaitPage::onStart(const QJsonObject &message) {
 	time_ = 0;
 	button_.setText(QString::number(time_));
 	timer_.start(1000);
@@ -34,20 +34,20 @@ void WaitPage::entry() {
 		button_.setText(QString::number(time_));
 
 		if(time_ == 60) {
-			this->toParent();
+			this->finish();
 		}
 	});
 }
 
-void WaitPage::exit() {
+void WaitPage::onResume(const QJsonObject &message) {
+	onStart(message);
+}
+
+void WaitPage::onPause(const QJsonObject &message) {
+	onStop(message);
+}
+
+void WaitPage::onStop(const QJsonObject &message) {
 	timer_.stop();
 	disconnect(&timer_, &QTimer::timeout, nullptr, nullptr);
-}
-
-void WaitPage::start() {
-	entry();
-}
-
-void WaitPage::stop() {
-	exit();
 }

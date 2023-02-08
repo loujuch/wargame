@@ -5,10 +5,10 @@
 #include <QAudioOutput>
 #include <QList>
 #include <QPair>
+#include <QJsonObject>
 
-#include "audiomessage.hpp"
 
-enum AudioType {BGM, TALK};
+enum AUDIO_TYPE {BGM, TALK};
 
 class AudioManager {
 	float bgm_volume_;
@@ -24,8 +24,8 @@ class AudioManager {
 	AudioManager();
 
   public slots:
-	void changeVolume(float change, enum AudioType type);
-	void switchAudio(const AudioMessage &message);
+	void changeVolume(float change, enum AUDIO_TYPE type);
+	void switchAudio(const QJsonObject &message);
 	void switchBgm(int index);
 	void playTalk(int index);
 };

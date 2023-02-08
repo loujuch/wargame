@@ -10,7 +10,8 @@ CONFIG += c++17
 
 SOURCES += \
     AudioManager/audiomanager.cpp \
-    AudioManager/audiomessage.cpp \
+    PageSystem/Activity/activityview.cpp \
+    PageSystem/Activity/activityviewwidget.cpp \
     PageSystem/mypage.cpp \
     PageSystem/pagesystem.cpp \
     PageSystem/selectpage.cpp \
@@ -20,7 +21,8 @@ SOURCES += \
 
 HEADERS += \
     AudioManager/audiomanager.hpp \
-    AudioManager/audiomessage.hpp \
+    PageSystem/Activity/activityview.hpp \
+    PageSystem/Activity/activityviewwidget.hpp \
     PageSystem/mypage.hpp \
     PageSystem/pagesystem.hpp \
     PageSystem/selectpage.hpp \

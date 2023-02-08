@@ -10,18 +10,18 @@ AudioManager::AudioManager()
 	talk_output_.setVolume(talk_volume_);
 }
 
-void AudioManager::switchAudio(const AudioMessage &message) {
+void AudioManager::switchAudio(const QJsonObject &message) {
 
 }
 
 void AudioManager::changeVolume(float change, enum AudioType type) {
 	switch(type) {
-	case AudioType::BGM:
+	case AUDIO_TYPE::BGM:
 		bgm_volume_ += change;
 		bgm_output_.setVolume(bgm_volume_);
 		break;
 
-	case AudioType::TALK:
+	case AUDIO_TYPE::TALK:
 		talk_volume_ += change;
 		talk_output_.setVolume(talk_volume_);
 		break;

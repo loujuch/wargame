@@ -13,15 +13,13 @@ class SelectPage : public myPage {
 	QVBoxLayout sub_layout_;
 	QList<QPushButton *> button_list_;
   public:
-	explicit SelectPage(QWidget *parent = nullptr,
-						myPage *parent_page_ = nullptr);
+	explicit SelectPage(const QString &name, QWidget *parent = nullptr);
 	~SelectPage();
 
-	void entry();
-	void exit();
-
-	void start();
-	void stop();
+	void onStart(const QJsonObject &message = QJsonObject());
+	void onResume(const QJsonObject &message = QJsonObject());
+	void onPause(const QJsonObject &message = QJsonObject());
+	void onStop(const QJsonObject &message = QJsonObject());
 };
 
 #endif // SELECTPAGE_HPP

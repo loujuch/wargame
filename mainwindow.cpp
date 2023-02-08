@@ -3,6 +3,7 @@
 #include <QScreen>
 
 #include "PageSystem/selectpage.hpp"
+#include "PageSystem/waitpage.hpp"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -15,9 +16,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 	view_.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-	view_.setDefaultPage<SelectPage>();
+	view_.addActivityView<SelectPage>("default");
+	view_.addActivityView<WaitPage>("timer");
 
-	connect(&view_, &PageSystem::closePageSystemSig, this, &QMainWindow::close);
+	view_.setDefaultActivityView("default");
+
+	connect(&view_, &PageSystem::closeThis, this, &QMainWindow::close);
 }
 
 MainWindow::~MainWindow() {

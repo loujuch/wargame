@@ -16,14 +16,12 @@ class WaitPage : public myPage {
 	QTimer timer_;
 	QPushButton button_;
   public:
-	WaitPage(QWidget *parent = nullptr,
-			 myPage *parent_page_ = nullptr);
+	WaitPage(const QString &name, QWidget *parent = nullptr);
 
-	void entry();
-	void exit();
-
-	void start();
-	void stop();
+	void onStart(const QJsonObject &message = QJsonObject());
+	void onResume(const QJsonObject &message = QJsonObject());
+	void onPause(const QJsonObject &message = QJsonObject());
+	void onStop(const QJsonObject &message = QJsonObject());
 };
 
 #endif // WAITPAGE_HPP
